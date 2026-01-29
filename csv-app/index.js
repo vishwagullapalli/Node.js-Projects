@@ -1,4 +1,5 @@
 import { writeFileSync } from "fs";
+import { createInterface } from "readline";
 
 const content = "Test content!";
 
@@ -8,3 +9,8 @@ try {
 } catch (err) {
     console.log(err);
 }
+
+const readline = createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
