@@ -14,3 +14,6 @@ const readline = createInterface({
     input: process.stdin,
     output: process.stdout,
 });
+
+const readLineAsync = (message) =>
+    new Promise((resolve) => readline.question(message, resolve));
