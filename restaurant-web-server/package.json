@@ -1,0 +1,15 @@
+{
+  "name": "restaurant-web-server",
+  "version": "1.0.0",
+  "description": "A web application for a local restaurant.",
+  "license": "ISC",
+  "author": "Vishwa Gullapalli",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fastify": "^5.7.2"
+  }
+}
