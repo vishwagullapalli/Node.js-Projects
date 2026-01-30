@@ -3,6 +3,9 @@ import operatingHours from "./data/operatingHours.js";
 import menuItems from "./data/menuItems.js";
 import ejs from "ejs";
 import fastifyView from "@fastify/view";
+import fastifyStatic from "@fastify/static";
+import { join } from "path";
+const publicPath = join(process.cwd(), "public");
 
 const app = Fastify();
 const port = 3000;
@@ -11,6 +14,11 @@ app.register(fastifyView, {
     engine: {
         ejs: ejs,
     },
+});
+
+app.register(fastifyStatic, {
+    root: publicPath,
+    prefix: "/public/",
 });
 
 app.get("/", async (request, response) => {
