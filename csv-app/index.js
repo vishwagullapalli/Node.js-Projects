@@ -32,17 +32,40 @@ class Person {
 }
 
 const startApp = async () => {
-    const questions = [
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phoneRegex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+
+    const promptName = await prompt.get([
         { name: "name", description: "Contact Name" },
-        { name: "number", description: "Contact Number" },
-        { name: "email", description: "Contact Email" },
-    ];
-    const responses = await prompt.get(questions);
-    const person = new Person(
-        responses.name,
-        responses.number,
-        responses.email,
-    );
+    ]);
+
+    const name = promptName.name;
+    let number;
+    let email;
+
+    while (true) {
+        const promptNumber = await prompt.get([
+            { name: "number", description: "Contact Number" },
+        ]);
+        number = promptNumber.number;
+        if (phoneRegex.test(number)) {
+            break;
+        }
+        console.log("Invalid phone number format. Try again!");
+    }
+
+    while (true) {
+        const promptEmail = await prompt.get([
+            { name: "email", description: "Contact Email" },
+        ]);
+        email = promptEmail.email;
+        if (emailRegex.test(email)) {
+            break;
+        }
+        console.log("Invalid email format. Try again!");
+    }
+
+    const person = new Person(name, number, email);
     await person.saveToCSV();
 
     const { again } = await prompt.get([
