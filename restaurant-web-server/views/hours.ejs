@@ -9,8 +9,9 @@
 
 <body>
     <h1>Our Hours</h1>
+    <div class="hours-container">
     <% for(let day of days) { %> <% const hoursObj = operatingHours[day] || operatingHours['defaultHours'] %>
-        <section style="display: inline-flex; flex-direction: column; padding: 5px">
+        <section>
             <h2><%= day.toUpperCase() %></h2>
             <div>
                 <% if (hoursObj.open) {%>
@@ -22,6 +23,7 @@
             </div>
         </section>
     <% }%>
+    </div>
 </body>
 
 </html>

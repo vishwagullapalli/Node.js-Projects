@@ -5,6 +5,7 @@ import ejs from "ejs";
 import fastifyView from "@fastify/view";
 import fastifyStatic from "@fastify/static";
 import { join } from "path";
+import aboutRestaurant from "./data/aboutRestaurant.js";
 const publicPath = join(process.cwd(), "public");
 
 const app = Fastify();
@@ -40,6 +41,10 @@ app.get("/hours", async (request, response) => {
         "sunday",
     ];
     return response.view("views/hours.ejs", { operatingHours, days });
+});
+
+app.get("/about", async (request, response) => {
+    return response.view("views/about.ejs", { aboutRestaurant });
 });
 
 app.listen({ port }, (err, address) => {
